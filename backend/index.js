@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import serverless from "serverless-http";
+
 
 import { dbConnection } from "./database/databaseConnection.js";
 import authRoutes from "./routes/authRoutes.js";
@@ -33,4 +33,4 @@ const handler = async (req, res) => {
   return app(req, res);
 };
 
-export default serverless(handler);
+export default app
