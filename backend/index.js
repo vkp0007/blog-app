@@ -25,7 +25,7 @@ app.use("/api/posts", postRoutes);      // CRUD posts
 // add/delete comments
 
 // db connection
-dbConnection();
+await dbConnection();
 
 
 export default serverless(app);
