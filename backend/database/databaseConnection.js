@@ -18,7 +18,7 @@ export const dbConnection = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGODB_URI, {
       dbName: process.env.DB_NAME || "test", // fallback if DB_NAME missing
-      serverSelectionTimeoutMS: 5000, // fail fast if DB not reachable
+     // fail fast if DB not reachable
     });
 
     isConnected = mongoose.connection.readyState === 1;
