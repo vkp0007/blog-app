@@ -3,12 +3,10 @@ import dotenv from "dotenv";
 
 dotenv.config({ path: ".env" });
 
-let isConnected = false; // connection state
+let isConnected = false;
 
 export const dbConnection = async () => {
   if (isConnected) {
-    // Reuse existing connection
-    console.log("🔄 Using existing MongoDB connection");
     return;
   }
 
@@ -17,13 +15,13 @@ export const dbConnection = async () => {
       dbName: process.env.DB_NAME,
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 5000, // fail quickly if DB not reachable
+      serverSelectionTimeoutMS: 5000, // fail fast instead of hanging forever
     });
 
     isConnected = conn.connections[0].readyState === 1;
-    console.log(`✅ Database connected at ${conn.connection.host}`);
+    console.log("✅ Database connected:", conn.connection.host);
   } catch (error) {
-    console.error(`❌ Database connection failed: ${error.message}`);
+    console.error("❌ Database connection failed:", error.message);
     throw error;
   }
 };
