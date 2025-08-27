@@ -6,16 +6,12 @@ dotenv.config({ path: ".env" });
 let isConnected = false;
 
 export const dbConnection = async () => {
-  if (isConnected) {
-    return;
-  }
+  if (isConnected) return;
 
   try {
     const conn = await mongoose.connect(process.env.MONGODB_URI, {
       dbName: process.env.DB_NAME,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 5000, // fail fast instead of hanging forever
+      serverSelectionTimeoutMS: 5000, // fail fast if DB not reachable
     });
 
     isConnected = conn.connections[0].readyState === 1;
