@@ -15,13 +15,14 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
-      "http://localhost:5173",
-      "https://your-frontend.vercel.app" // replace with frontend URL
-    ],
+      "http://localhost:5173" ],
     credentials: true,
   })
 );
-
+// test route
+app.get("/", (req, res) => {
+  res.send("🚀 API is running and DB is connected!");
+});
 // Mount routes
 app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRoutes);
