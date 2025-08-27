@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import { dbConnection } from "./database/databaseConnection.js";
 import cors from "cors"
+import serverless from "serverless-http";
 
 // import routes
 import authRoutes from "./routes/authRoutes.js";
@@ -27,3 +28,4 @@ app.use("/api/posts", postRoutes);      // CRUD posts
 dbConnection();
 
 
+export default serverless(app);
