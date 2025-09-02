@@ -19,10 +19,7 @@ app.use(
     credentials: true,
   })
 );
-// test route
-app.get("/", (req, res) => {
-  res.send("🚀 API is running and DB is connected!");
-});
+
 // Mount routes
 app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRoutes);
@@ -32,5 +29,8 @@ const handler = async (req, res) => {
   await dbConnection();
   return app(req, res);
 };
-
+// test route
+app.get("/", (req, res) => {
+  res.send("🚀 API is running and DB is connected!");
+});
 export default app
