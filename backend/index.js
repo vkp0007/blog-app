@@ -19,16 +19,17 @@ app.use(
     credentials: true,
   })
 );
-
-// Mount routes
-app.use("/api/auth", authRoutes);
-app.use("/api/posts", postRoutes);
-
 // ✅ Wrap handler: ensure DB is connected per request
 const handler = async (req, res) => {
   await dbConnection();
   return app(req, res);
 };
+
+// Mount routes
+app.use("/api/auth", authRoutes);
+app.use("/api/posts", postRoutes);
+
+
 // test route
 app.get("/", (req, res) => {
   res.send(" API is running and DB is connected!");
