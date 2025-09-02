@@ -31,6 +31,6 @@ const handler = async (req, res) => {
 };
 // test route
 app.get("/", (req, res) => {
-  res.send("🚀 API is running and DB is connected!");
+  res.send(" API is running and DB is connected!");
 });
 export default app
